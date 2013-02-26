@@ -1,0 +1,8 @@
+<?php
+
+	/**
+	* @file
+	*Provides functions and callbakc for managing a blobal word list
+	*for example managing blacklisted words.
+	*/
+
