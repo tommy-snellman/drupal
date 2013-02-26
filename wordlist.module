@@ -83,7 +83,15 @@ function wordlist_save_list(array $words) {
 	variable_set('wordlist_words', $words);
 }
 
-
-
-
-
+/**
+ * Implement hook_entity_property_info_alter().
+ */
+function wordlist_entity_property_info_alter(&$info) {
+	$info['site']['properties']['wordlist_words'] = array(
+		'label' => t('Word list'),
+		'description' => t('A list of words, as defined by the Word list module.'),
+		'getter callback' => 'wordlist_get_list',
+		'sanitize' => 'check_plain',
+		'type' => 'list<text>',
+	);
+}
