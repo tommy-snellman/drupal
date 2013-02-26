@@ -6,3 +6,27 @@
 	*for example managing blacklisted words.
 	*/
 
+
+/*
+* Implements hook_menu().
+*/
+function wordlist_menu() {
+	$items['admin/config/content/wordlist'] = array(
+		'title' => 'Word list',
+		'description' => 'Manage the list of globally available words on your site.',
+		'page callback' => 'wordlist_page',
+		'access callback' => 'user_access',
+		'access arguments' =>  array('administer_site_configuration'),
+		'menu_name' => 'management',
+	);
+
+	return $items;
+}
+
+/**
+ * Builds the page for configuring Word list.
+ */
+
+function wordlist_page() {
+	return 'Hello World';
+}
