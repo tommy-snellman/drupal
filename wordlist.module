@@ -14,7 +14,8 @@ function wordlist_menu() {
 	$items['admin/config/content/wordlist'] = array(
 		'title' => 'Word list',
 		'description' => 'Manage the list of globally available words on your site.',
-		'page callback' => 'wordlist_page',
+		'page callback' => 'drupal_get_form',
+		'page arguments' => array('wordlist_page'),
 		'access callback' => 'user_access',
 		'access arguments' =>  array('administer_site_configuration'),
 		'menu_name' => 'management',
@@ -24,9 +25,20 @@ function wordlist_menu() {
 }
 
 /**
- * Builds the page for configuring Word list.
+ * Builds the form for configuring Word list.
  */
 
 function wordlist_page() {
-	return 'Hello World';
+
+		$form['wordlist_words'] = array(
+			'#type' => 'textarea',
+			'#title' => t('Words to include in the list'),
+			'#description' => t('The words included in this list will be available to Rules and other modules making use of the global "site" entity.'),
+		);
+		$form['submit'] = array(
+			'#type' => 'submit',
+			'#value' => t('Save')
+		);
+
+	return $form;
 }
