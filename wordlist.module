@@ -34,6 +34,7 @@ function wordlist_page() {
 			'#type' => 'textarea',
 			'#title' => t('Words to include in the list'),
 			'#description' => t('The words included in this list will be available to Rules and other modules making use of the global "site" entity.'),
+			'#default_value' => implode("\r\n", variable_get('wordlist_words', array())),
 		);
 		$form['submit'] = array(
 			'#type' => 'submit',
@@ -42,3 +43,30 @@ function wordlist_page() {
 
 	return $form;
 }
+
+
+/**
+ * Submit function for the Word list configurations page
+ */
+function wordlist_page_submit($form, $form_state) {
+	// Break up the list of words according to line breaks.
+	$words = explode("\r\n", $form_state['input']['wordlist_words']);
+	
+	wordlist_save_list($words);
+	drupal_set_message(t('The words have been saved'));
+}
+
+
+/**
+ * Stores the globally accessible Word list words.
+ * @param $words
+ * An array containing the words that should be stored.
+ */
+function wordlist_save_list(array $words) {
+	variable_set('wordlist_words', $words);
+}
+
+
+
+
+
