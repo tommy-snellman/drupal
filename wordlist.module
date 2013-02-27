@@ -84,6 +84,15 @@ function wordlist_save_list(array $words) {
 }
 
 /**
+ * Fetches the list of words as definde by Word list module.
+ * @return
+ * An array of words, not sanitized.
+ */
+function wordlist_get_list() {
+	return variable_get('wordlist_words', array());
+}
+
+/**
  * Implement hook_entity_property_info_alter().
  */
 function wordlist_entity_property_info_alter(&$info) {
