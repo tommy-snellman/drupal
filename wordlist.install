@@ -1,0 +1,13 @@
+<?php
+
+/**
+ * @file
+ * Functions that are called on install or uninstall. Actually, only
+ * uninstall in this case.
+ */
+
+function wordlist_uninstall() {
+	variable_del('wordlist_words');
+}
+
+
